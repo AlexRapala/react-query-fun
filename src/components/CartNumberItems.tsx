@@ -1,14 +1,11 @@
-import { useCart } from "../hooks/useCart";
+import { useCartStore } from "../hooks/useCartStore";
 
 export const CartNumberItems = () => {
-  const { data, isPending } = useCart();
+  const itemCount = useCartStore((state) => state.itemCount);
 
-  if (isPending) return <div>Loading</div>;
   return (
     <section>
-      <div style={{ margin: 0, padding: 0 }}>
-        Number of items: {data?.items.length}
-      </div>
+      <div style={{ margin: 0, padding: 0 }}>Number of items: {itemCount}</div>
       <style jsx>{`
         li {
           display: block;

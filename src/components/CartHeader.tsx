@@ -1,13 +1,11 @@
-import { useCart } from "../hooks/useCart";
+import { useCart } from "./CartList";
 import { CartNumberItems } from "./CartNumberItems";
 
 export const CartHeader = () => {
-  const { data, isPending } = useCart();
+  const { items } = useCart();
 
-  if (isPending) return <div>Loading</div>;
   const total =
-    data?.items?.reduce((sum, item) => sum + item.price * item.quantity, 0) ??
-    0;
+    items?.reduce((sum, item) => sum + item.price * item.quantity, 0) ?? 0;
 
   return (
     <section>

@@ -1,21 +1,10 @@
-import React from 'react'
-import {
-  HydrationBoundary,
-  QueryClient,
-  QueryClientProvider,
-} from '@tanstack/react-query'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import type { AppProps } from 'next/app'
+import { QueryClient } from "@tanstack/react-query";
+import type { AppProps } from "next/app";
+import React from "react";
+import { useInitializeCart } from "../hooks/useCartStore";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const [queryClient] = React.useState(() => new QueryClient())
-
-  return (
-    <QueryClientProvider client={queryClient}>
-      <HydrationBoundary state={pageProps.dehydratedState}>
-        <Component {...pageProps} />
-      </HydrationBoundary>
-      <ReactQueryDevtools />
-    </QueryClientProvider>
-  )
+  const [queryClient] = React.useState(() => new QueryClient());
+  void useInitializeCart();
+  return <Component {...pageProps} />;
 }
