@@ -11,13 +11,13 @@ export type Cart = {
 };
 
 const fetchCart = async (): Promise<Cart> => {
-  const response = await fetch('http://localhost:3000/api/cart');
+  const response = await fetch(`${window.location.protocol}//${window.location.host}/api/cart`);
   const data = await response.json();
   return data;
 }
 
 const addItemToCart = async (newItem: Item) => {
-  const response = await fetch('http://localhost:3000/api/cart', {
+  const response = await fetch(`${window.location.protocol}//${window.location.host}/api/cart`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
